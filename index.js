@@ -9,6 +9,22 @@ app.use(cors());
 
 const API_KEY = process.env.NYT_API_KEY;
 
+//Static file declaration
+app.use(express.static(path.join(__dirname, 'client/build')));
+
+//production mode
+if(process.env.NODE_ENV === 'production') {
+  app.use(express.static(path.join(__dirname, 'client/build')));
+  //
+  app.get('*', (req, res) => {
+    res.sendfile(path.join(__dirname = 'client/build/index.html'));
+  })
+}
+//build mode
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname+'/client/public/index.html'));
+})
+
 // Fetch articles route based on user input
 app.get("/api/articles/:subject", (req, res) => {
   const subject = req.params.subject;
