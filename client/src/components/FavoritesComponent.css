@@ -1,0 +1,9 @@
+.favorite-article {
+  padding-bottom: 15px;
+}
+
+.favorites-remove-btn {
+  font-weight: 600;
+  cursor: pointer;
+  color: #000;
+}

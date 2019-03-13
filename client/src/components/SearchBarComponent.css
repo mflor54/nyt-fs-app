@@ -1,0 +1,39 @@
+.searchbar-wrapper {
+  position: relative;
+  padding: 30px 30px;
+}
+
+.link-to-favorites {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding-top: 15px;
+  padding-right: 10px;
+}
+
+.link {
+  color: #000;
+}
+
+.searchbar:focus {
+  outline: none;
+}
+
+.searchbar {
+  height: 35px;
+  width: 205px;
+  border-radius: 3px;
+  border-width: 1px;
+  border-color: rgb(226, 226, 226);
+  padding: 0px 10px;
+}
+
+.search-btn {
+  height: 40px;
+  margin-left: 10px;
+  background-color: rgb(98, 136, 165);
+  color: rgb(255, 255, 255);
+  border-radius: 5px;
+  font-weight: 800;
+  width: 40px;
+}
