@@ -22,9 +22,9 @@ if (process.env.NODE_ENV === "production") {
   });
 }
 //build mode
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname + "/client/public/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname + "/client/public/index.html"));
+// });
 
 // Fetch articles route based on user input
 app.get("/api/articles/:subject", (req, res) => {
