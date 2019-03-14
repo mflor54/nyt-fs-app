@@ -41,9 +41,19 @@ export const ResultsComponent = ({
           <h3 className="author">{article.byline.original}</h3>
           <a
             className="section-name"
-            href={`https://www.nytimes.com/section/${article.section_name.toLowerCase()}`}
+            href={`https://www.nytimes.com/section/${
+              article.section_name === undefined
+                ? ""
+                : article.section_name.toLowerCase()
+            }`}
           >
-            <p>{article.section_name}</p>
+            <p>
+              {article.section_name === undefined ? (
+                <span />
+              ) : (
+                article.section_name
+              )}
+            </p>
           </a>
           <div className="results-content">
             <p className="content">{article.lead_paragraph}</p>
