@@ -22,7 +22,7 @@ export const fetchArticles = () => (dispatch, getState) => {
 
   let url =
     process.env.NODE_ENV === "production"
-      ? `https://peaceful-beach-41588.herokuapp.com/api/articles/${searchValue}`
+      ? `/api/articles/${searchValue}`
       : `http://localhost:8080/api/articles/${searchValue}`;
 
   dispatch({ type: REQUEST_ARTICLES });
@@ -45,7 +45,7 @@ export const fetchArticles = () => (dispatch, getState) => {
 export const fetchBasedOffHashtag = hashtag => dispatch => {
   let url =
     process.env.NODE_ENV === "production"
-      ? `https://peaceful-beach-41588.herokuapp.com/api/hashtags/${hashtag}`
+      ? `/api/hashtags/${hashtag}`
       : `http://localhost:8080/api/hashtags/${hashtag}`;
 
   dispatch({ type: REQUEST_ARTICLES });
