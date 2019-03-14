@@ -1,3 +1,5 @@
+const axios = require("axios");
+
 export const REQUEST_ARTICLES = "REQUEST_ARTICLES";
 export const REQUEST_ARTICLES_SUCCESS = "REQUEST_ARTICLES_SUCCESS";
 export const REQUEST_ARTICLES_FAILED = "REQUEST_ARTICLES_FAILED";
@@ -17,13 +19,24 @@ export const UPDATE_SEARCH = "UPDATE_SEARCH";
 
 export const fetchArticles = () => (dispatch, getState) => {
   const searchValue = getState().search.searchField;
+
+  let url =
+    process.env.node_env === "production"
+      ? `https://peaceful-beach-41588.herokuapp.com/api/articles${searchValue}`
+      : `http://localhost:8080/api/articles/${searchValue}`;
+
   dispatch({ type: REQUEST_ARTICLES });
-  fetch(`http://localhost:8080/api/articles/${searchValue}`)
-    .then(res => res.json())
-    .then(articles =>
-      dispatch({ type: REQUEST_ARTICLES_SUCCESS, payload: articles })
-    )
-    .catch(err => dispatch({ type: REQUEST_ARTICLES_FAILED, payload: err }));
+
+  axios
+    .get(url)
+    .then(res => {
+      console.log("This is response:", res.data);
+      dispatch({ type: REQUEST_ARTICLES_SUCCESS, payload: res.data });
+    })
+    .catch(err => {
+      console.log("This is err:", err);
+      dispatch({ type: REQUEST_ARTICLES_FAILED, payload: err });
+    });
 };
 
 /**
@@ -32,15 +45,22 @@ export const fetchArticles = () => (dispatch, getState) => {
  */
 
 export const fetchBasedOffHashtag = hashtag => dispatch => {
+  let url =
+    process.env.node_env === "production"
+      ? `https://peaceful-beach-41588.herokuapp.com/api/hashtags/${hashtag}`
+      : `http://localhost:8080/api/hashtags/${hashtag}`;
+
   dispatch({ type: REQUEST_ARTICLES });
-  fetch(`http://localhost:8080/api/hashtags/${hashtag}`)
-    .then(res => res.json())
-    .then(articles => {
-      dispatch({ type: SEARCH_OFF_HASHTAG, payload: articles });
+
+  axios
+    .get(url)
+    .then(res => {
+      console.log("this is hashtags:", res.data);
+      dispatch({ type: SEARCH_OFF_HASHTAG, payload: res.data });
       dispatch({ type: UPDATE_SEARCH, payload: hashtag });
     })
     .catch(err => {
-      console.log("ERROR HASHTAG SEARCH", err);
+      console.log("Hashtag err", err);
     });
 };
 
