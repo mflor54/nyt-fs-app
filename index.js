@@ -10,7 +10,7 @@ app.use(cors());
 
 const API_KEY = process.env.NYT_API_KEY;
 
-//Static file declaration
+// Static file declaration
 app.use(express.static(path.join(__dirname, 'client/build')));
 
 //production mode
