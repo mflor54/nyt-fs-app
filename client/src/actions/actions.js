@@ -21,7 +21,7 @@ export const fetchArticles = () => (dispatch, getState) => {
   const searchValue = getState().search.searchField;
 
   let url =
-    process.env.node_env === "production"
+    process.env.NODE_ENV === "production"
       ? `https://peaceful-beach-41588.herokuapp.com/api/articles${searchValue}`
       : `http://localhost:8080/api/articles/${searchValue}`;
 
@@ -46,7 +46,7 @@ export const fetchArticles = () => (dispatch, getState) => {
 
 export const fetchBasedOffHashtag = hashtag => dispatch => {
   let url =
-    process.env.node_env === "production"
+    process.env.NODE_ENV === "production"
       ? `https://peaceful-beach-41588.herokuapp.com/api/hashtags/${hashtag}`
       : `http://localhost:8080/api/hashtags/${hashtag}`;
 
