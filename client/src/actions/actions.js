@@ -19,11 +19,8 @@ export const UPDATE_SEARCH = "UPDATE_SEARCH";
 
 export const fetchArticles = () => (dispatch, getState) => {
   const searchValue = getState().search.searchField;
-
-  let url =
-    process.env.NODE_ENV === "production"
-      ? `/api/articles/${searchValue}`
-      : `http://localhost:8080/api/articles/${searchValue}`;
+  
+  let url = `/api/articles/${searchValue}`
 
   dispatch({ type: REQUEST_ARTICLES });
 
@@ -43,10 +40,8 @@ export const fetchArticles = () => (dispatch, getState) => {
  */
 
 export const fetchBasedOffHashtag = hashtag => dispatch => {
-  let url =
-    process.env.NODE_ENV === "production"
-      ? `/api/hashtags/${hashtag}`
-      : `http://localhost:8080/api/hashtags/${hashtag}`;
+
+  let url = `/api/hashtags/${hashtag}`
 
   dispatch({ type: REQUEST_ARTICLES });
 
